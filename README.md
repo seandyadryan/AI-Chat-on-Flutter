@@ -12,11 +12,6 @@ Flutter Android app with Google login, an Oracle-hosted Node.js API, PostgreSQL,
 
 ## Flutter Setup
 
-Update `.env`:
-
-```env
-API_BASE_URL=http://168.110.194.144
-GOOGLE_SERVER_CLIENT_ID=your-google-web-client-id.apps.googleusercontent.com
 ```
 
 Then run:
@@ -36,16 +31,6 @@ C:\Users\seandy.nugraha\fvm\versions\3.41.2\bin\flutter.bat pub get
 
 ## Oracle Server Deploy
 
-Copy the repository to the Oracle VM, then create `server/.env` from `server/.env.example`:
-
-```env
-PORT=8080
-DATABASE_URL=postgresql://aiuser:GantiPasswordKuat123!@postgres:5432/aidb
-JWT_SECRET=replace-with-a-long-random-secret
-GOOGLE_CLIENT_ID=your-google-web-client-id.apps.googleusercontent.com
-OLLAMA_BASE_URL=http://host.docker.internal:11434
-OLLAMA_MODEL=llama3.2:3b
-```
 
 Start the API and database:
 

@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+set -e
+
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/bump_build.ps1
+git add pubspec.yaml

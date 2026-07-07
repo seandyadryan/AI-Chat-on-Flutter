@@ -1,0 +1,27 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: ai-chat-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: aidb
+      POSTGRES_USER: aiuser
+      POSTGRES_PASSWORD: GantiPasswordKuat123!
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
+    ports:
+      - "127.0.0.1:5432:5432"
+
+  api:
+    build:
+      context: ./server
+    container_name: ai-chat-api
+    restart: unless-stopped
+    depends_on:
+      - postgres
+    env_file:
+      - ./server/.env
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    ports:
+      - "80:8080"

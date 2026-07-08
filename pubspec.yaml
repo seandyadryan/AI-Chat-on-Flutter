@@ -16,7 +16,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
-version: 1.0.0+7
+version: 1.0.0+8
 environment:
   sdk: ^3.11.0
 
@@ -69,19 +69,20 @@ flutter:
   assets:
     - .env
     - assets/branding/app_icon.png
+    - assets/branding/neurax_logo.png
 
 flutter_launcher_icons:
   android: true
-  image_path: assets/branding/app_icon.png
+  image_path: assets/branding/neurax_logo.png
   adaptive_icon_background: "#08090B"
-  adaptive_icon_foreground: assets/branding/app_icon.png
+  adaptive_icon_foreground: assets/branding/neurax_logo.png
 
 flutter_native_splash:
   color: "#08090B"
-  image: assets/branding/app_icon.png
+  image: assets/branding/neurax_logo.png
   android_12:
     color: "#08090B"
-    image: assets/branding/app_icon.png
+    image: assets/branding/neurax_logo.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:

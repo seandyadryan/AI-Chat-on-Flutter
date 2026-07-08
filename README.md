@@ -15,7 +15,8 @@ Flutter Android app with guest chat access, an Oracle-hosted Node.js API, Postgr
 Update `.env`:
 
 ```env
-API_BASE_URL=https://api.amarlo.online
+API_BASE_URL=http://168.110.194.144
+GOOGLE_SERVER_CLIENT_ID=your-google-web-client-id.apps.googleusercontent.com
 ```
 
 Then run:
@@ -41,6 +42,7 @@ Copy the repository to the Oracle VM, then create `server/.env` from `server/.en
 PORT=8080
 DATABASE_URL=postgresql://aiuser:GantiPasswordKuat123!@postgres:5432/aidb
 JWT_SECRET=replace-with-a-long-random-secret
+GOOGLE_CLIENT_ID=your-google-web-client-id.apps.googleusercontent.com
 OLLAMA_BASE_URL=http://host.docker.internal:11434
 OLLAMA_MODEL=llama3.2:3b
 ```

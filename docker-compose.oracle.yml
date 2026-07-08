@@ -10,7 +10,7 @@ services:
     volumes:
       - ./data/postgres:/var/lib/postgresql/data
     ports:
-      - "127.0.0.1:5432:5432"
+      - "127.0.0.1:15432:5432"
 
   api:
     build:
@@ -23,5 +23,23 @@ services:
       - ./server/.env
     extra_hosts:
       - "host.docker.internal:host-gateway"
+    expose:
+      - "8080"
+
+  caddy:
+    image: caddy:2-alpine
+    container_name: ai-chat-caddy
+    restart: unless-stopped
+    depends_on:
+      - api
     ports:
-      - "80:8080"
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+
+volumes:
+  caddy_data:
+  caddy_config:

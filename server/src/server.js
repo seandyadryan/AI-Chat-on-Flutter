@@ -6,7 +6,7 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import { z } from 'zod';
 
-import { requireAuth, verifyGoogleLogin } from './auth.js';
+import { createFirebaseLogin, requireAuth } from './auth.js';
 import { prisma } from './db.js';
 import { askOllama } from './ollama.js';
 
@@ -21,14 +21,14 @@ app.get('/health', (_req, res) => {
   res.json({ ok: true, service: 'ai-chat-api' });
 });
 
-app.post('/auth/google', async (req, res) => {
-  const parsed = z.object({ idToken: z.string().min(10) }).safeParse(req.body);
+app.post('/auth/firebase', async (req, res) => {
+  const parsed = z.object({ idToken: z.string().min(20) }).safeParse(req.body);
   if (!parsed.success) {
     return res.status(400).json({ error: 'Invalid login payload' });
   }
 
   try {
-    const { user, token } = await verifyGoogleLogin(parsed.data.idToken);
+    const { user, token } = await createFirebaseLogin(parsed.data.idToken);
     return res.json({
       token,
       user: {
@@ -101,11 +101,11 @@ async function getOrCreateConversation(userId) {
   if (existing) return existing;
 
   return prisma.conversation.create({
-    data: { userId, title: 'AI Chat' },
+    data: { userId, title: 'NeuraX Chat' },
   });
 }
 
 const port = Number(process.env.PORT ?? 8080);
 app.listen(port, () => {
-  console.log(`AI Chat API listening on ${port}`);
+  console.log(`NeuraX API listening on ${port}`);
 });

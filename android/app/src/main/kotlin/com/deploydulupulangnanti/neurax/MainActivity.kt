@@ -1,4 +1,4 @@
-package com.seandyadryan.ai_chat_app
+package com.deploydulupulangnanti.neurax
 
 import io.flutter.embedding.android.FlutterActivity
 

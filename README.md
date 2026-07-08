@@ -1,12 +1,12 @@
 # AI Chat on Flutter
 
-Flutter Android app with Google login, an Oracle-hosted Node.js API, PostgreSQL, and Ollama.
+Flutter Android app with guest chat access, an Oracle-hosted Node.js API, PostgreSQL, and Ollama.
 
 ## Project
 
 - Flutter SDK: `3.41.2` via FVM
 - Android package: `com.seandyadryan.ai_chat_app`
-- App API target: `http://168.110.194.144`
+- App API target: `https://api.amarlo.online`
 - Backend database: PostgreSQL
 - AI runtime: Ollama on the Oracle VM
 
@@ -15,8 +15,7 @@ Flutter Android app with Google login, an Oracle-hosted Node.js API, PostgreSQL,
 Update `.env`:
 
 ```env
-API_BASE_URL=http://168.110.194.144
-GOOGLE_SERVER_CLIENT_ID=your-google-web-client-id.apps.googleusercontent.com
+API_BASE_URL=https://api.amarlo.online
 ```
 
 Then run:
@@ -42,7 +41,6 @@ Copy the repository to the Oracle VM, then create `server/.env` from `server/.en
 PORT=8080
 DATABASE_URL=postgresql://aiuser:GantiPasswordKuat123!@postgres:5432/aidb
 JWT_SECRET=replace-with-a-long-random-secret
-GOOGLE_CLIENT_ID=your-google-web-client-id.apps.googleusercontent.com
 OLLAMA_BASE_URL=http://host.docker.internal:11434
 OLLAMA_MODEL=llama3.2:3b
 ```
@@ -57,9 +55,10 @@ Health check:
 
 ```bash
 curl http://localhost/health
+curl https://api.amarlo.online/health
 ```
 
-The compose file publishes the API on port `80`, matching the Oracle ingress rule you already opened. For production, put the API behind HTTPS on port `443`.
+The compose file runs Caddy in front of the API. Caddy publishes ports `80` and `443`, then creates HTTPS automatically for `api.amarlo.online` after the DNS record points to the Oracle VM public IP.
 
 ## Git Hook
 

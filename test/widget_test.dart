@@ -1,21 +1,17 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:ai_chat_app/src/screens/login_screen.dart';
-import 'package:ai_chat_app/src/services/api_client.dart';
-import 'package:ai_chat_app/src/services/auth_service.dart';
+import 'package:neurax/src/models/session_user.dart';
 
 void main() {
-  testWidgets('login screen shows Google sign-in action', (tester) async {
-    final apiClient = ApiClient();
-    final authService = AuthService(apiClient);
+  test('session user parses Google profile', () {
+    final user = SessionUser.fromJson({
+      'id': 'google-id',
+      'name': 'Seandy Adryan',
+      'email': 'seandy@example.com',
+      'photoUrl': null,
+    });
 
-    await tester.pumpWidget(
-      MaterialApp(
-        home: LoginScreen(apiClient: apiClient, authService: authService),
-      ),
-    );
-
-    expect(find.text('Lanjut dengan Google'), findsOneWidget);
+    expect(user.name, 'Seandy Adryan');
+    expect(user.photoUrl, isNull);
   });
 }

@@ -17,6 +17,8 @@ class _SplashScreenState extends State<SplashScreen>
   late final AnimationController _controller;
   late final ApiClient _apiClient;
   late final AuthService _authService;
+  String? _errorMessage;
+  bool _isConnecting = true;
 
   @override
   void initState() {
@@ -31,14 +33,22 @@ class _SplashScreenState extends State<SplashScreen>
   }
 
   Future<void> _bootstrap() async {
-    await _authService.initialize();
-    await Future<void>.delayed(const Duration(milliseconds: 900));
-    final session = await _authService.restoreSession();
+    setState(() {
+      _errorMessage = null;
+      _isConnecting = true;
+    });
 
-    if (!mounted) return;
-    if (session == null) {
-      _goTo(LoginScreen(apiClient: _apiClient, authService: _authService));
-    } else {
+    try {
+      await _authService.initialize();
+      await Future<void>.delayed(const Duration(milliseconds: 900));
+      final session = await _authService.restoreSession();
+
+      if (!mounted) return;
+      if (session == null) {
+        _goTo(LoginScreen(apiClient: _apiClient, authService: _authService));
+        return;
+      }
+
       _goTo(
         ChatScreen(
           apiClient: _apiClient,
@@ -47,6 +57,13 @@ class _SplashScreenState extends State<SplashScreen>
           user: session.user,
         ),
       );
+    } catch (error) {
+      if (!mounted) return;
+      setState(() {
+        _isConnecting = false;
+        _errorMessage =
+            'Belum bisa terhubung ke server. Periksa internet lalu coba lagi.';
+      });
     }
   }
 
@@ -72,7 +89,7 @@ class _SplashScreenState extends State<SplashScreen>
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [Color(0xFF07111F), Color(0xFF0A2933), Color(0xFF101827)],
+            colors: [Color(0xFF08090B), Color(0xFF111113), Color(0xFF08090B)],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
@@ -86,8 +103,8 @@ class _SplashScreenState extends State<SplashScreen>
                   CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
                 ),
                 child: Container(
-                  width: 112,
-                  height: 112,
+                  width: 154,
+                  height: 154,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(32),
                     boxShadow: [
@@ -106,27 +123,47 @@ class _SplashScreenState extends State<SplashScreen>
               ),
               const SizedBox(height: 28),
               const Text(
-                'AI Chat',
+                'NeuraX',
                 style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 34,
+                  color: Color(0xFFEDEDED),
+                  fontSize: 42,
                   fontWeight: FontWeight.w800,
                 ),
               ),
               const SizedBox(height: 10),
               Text(
-                'Menghubungkan ke Oracle AI server',
+                'Synchronizing neural core',
                 style: TextStyle(
                   color: Colors.white.withValues(alpha: .72),
                   fontSize: 15,
                 ),
               ),
               const SizedBox(height: 32),
-              const SizedBox(
-                width: 36,
-                height: 36,
-                child: CircularProgressIndicator(strokeWidth: 3),
-              ),
+              if (_isConnecting)
+                const SizedBox(
+                  width: 36,
+                  height: 36,
+                  child: CircularProgressIndicator(strokeWidth: 3),
+                )
+              else ...[
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 36),
+                  child: Text(
+                    _errorMessage ?? 'Koneksi gagal.',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Colors.white.withValues(alpha: .78),
+                      fontSize: 14,
+                      height: 1.4,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 18),
+                FilledButton(
+                  onPressed: _bootstrap,
+                  child: const Text('Coba lagi'),
+                ),
+              ],
             ],
           ),
         ),

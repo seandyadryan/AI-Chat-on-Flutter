@@ -1,34 +1,34 @@
 import 'package:flutter/material.dart';
 
 ThemeData buildAppTheme() {
-  const seed = Color(0xFF0B6B63);
+  const seed = Color(0xFFECEDEF);
 
   return ThemeData(
     useMaterial3: true,
     colorScheme: ColorScheme.fromSeed(
       seedColor: seed,
-      brightness: Brightness.light,
+      brightness: Brightness.dark,
     ),
-    scaffoldBackgroundColor: const Color(0xFFF7FAFA),
+    scaffoldBackgroundColor: const Color(0xFF111113),
     appBarTheme: const AppBarTheme(
       centerTitle: false,
-      backgroundColor: Colors.white,
-      foregroundColor: Color(0xFF101827),
+      backgroundColor: Color(0xFF111113),
+      foregroundColor: Color(0xFFECEDEF),
       surfaceTintColor: Colors.transparent,
       elevation: 0,
     ),
     filledButtonTheme: FilledButtonThemeData(
       style: FilledButton.styleFrom(
-        backgroundColor: seed,
-        foregroundColor: Colors.white,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+        backgroundColor: const Color(0xFFECEDEF),
+        foregroundColor: const Color(0xFF111113),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(22)),
       ),
     ),
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
-      fillColor: const Color(0xFFF3F7F7),
+      fillColor: const Color(0xFF202124),
       border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(24),
         borderSide: BorderSide.none,
       ),
     ),

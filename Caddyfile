@@ -1,0 +1,4 @@
+api.amarlo.online {
+  encode gzip
+  reverse_proxy api:8080
+}

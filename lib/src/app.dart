@@ -10,7 +10,7 @@ class AiChatApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'AI Chat',
+      title: 'NeuraX',
       theme: buildAppTheme(),
       home: const SplashScreen(),
     );

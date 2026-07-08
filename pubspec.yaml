@@ -1,5 +1,5 @@
-name: ai_chat_app
-description: "AI chat app with Google login, Oracle-hosted API, Ollama, and PostgreSQL."
+name: neurax
+description: "NeuraX AI chat app with Google login, Oracle-hosted API, Ollama, and PostgreSQL."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -16,7 +16,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
-version: 1.0.0+3
+version: 1.0.0+4
 environment:
   sdk: ^3.11.0
 
@@ -33,12 +33,14 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
-  google_sign_in: ^7.2.0
   http: ^1.6.0
   shared_preferences: ^2.5.5
   flutter_dotenv: ^6.0.1
   uuid: ^4.5.3
   intl: ^0.20.3
+  firebase_core: ^4.11.0
+  firebase_auth: ^6.5.4
+  google_sign_in: ^7.2.0
 
 dev_dependencies:
   flutter_test:
@@ -71,14 +73,14 @@ flutter:
 flutter_launcher_icons:
   android: true
   image_path: assets/branding/app_icon.png
-  adaptive_icon_background: "#07111F"
+  adaptive_icon_background: "#08090B"
   adaptive_icon_foreground: assets/branding/app_icon.png
 
 flutter_native_splash:
-  color: "#07111F"
+  color: "#08090B"
   image: assets/branding/app_icon.png
   android_12:
-    color: "#07111F"
+    color: "#08090B"
     image: assets/branding/app_icon.png
 
   # To add assets to your application, add an assets section, like this:

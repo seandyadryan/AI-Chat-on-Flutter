@@ -20,12 +20,14 @@ class ApiClient {
 
   Uri _uri(String path) => Uri.parse('${AppConfig.apiBaseUrl}$path');
 
-  Future<AuthSession> loginWithGoogle(String idToken) async {
-    final response = await _client.post(
-      _uri('/auth/google'),
-      headers: {'Content-Type': 'application/json'},
-      body: jsonEncode({'idToken': idToken}),
-    );
+  Future<AuthSession> loginWithFirebase(String idToken) async {
+    final response = await _client
+        .post(
+          _uri('/auth/firebase'),
+          headers: {'Content-Type': 'application/json'},
+          body: jsonEncode({'idToken': idToken}),
+        )
+        .timeout(const Duration(seconds: 20));
 
     final json = _decode(response);
     return AuthSession(
@@ -35,10 +37,9 @@ class ApiClient {
   }
 
   Future<List<ChatMessage>> getMessages(String token) async {
-    final response = await _client.get(
-      _uri('/chat/messages'),
-      headers: _authHeaders(token),
-    );
+    final response = await _client
+        .get(_uri('/chat/messages'), headers: _authHeaders(token))
+        .timeout(const Duration(seconds: 20));
 
     final json = _decode(response);
     return (json['messages'] as List<dynamic>)
@@ -50,11 +51,13 @@ class ApiClient {
     required String token,
     required String message,
   }) async {
-    final response = await _client.post(
-      _uri('/chat/messages'),
-      headers: _authHeaders(token),
-      body: jsonEncode({'message': message}),
-    );
+    final response = await _client
+        .post(
+          _uri('/chat/messages'),
+          headers: _authHeaders(token),
+          body: jsonEncode({'message': message}),
+        )
+        .timeout(const Duration(seconds: 60));
 
     final json = _decode(response);
     return ChatMessage.fromJson(json['assistant'] as Map<String, dynamic>);

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "669760327632",
+    "project_id": "ai-app-flutter-4763f",
+    "storage_bucket": "ai-app-flutter-4763f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:669760327632:android:84b903d4e9e0e25a0433d5",
+        "android_client_info": {
+          "package_name": "com.deploydulupulangnanti.neurax"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDyap3vqSwYxPhc5xEcp6DRmI336pDMuoY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

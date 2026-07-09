@@ -1,5 +1,7 @@
 import jwt from 'jsonwebtoken';
-import { getApps, initializeApp } from 'firebase-admin/app';
+import { readFileSync } from 'node:fs';
+
+import { applicationDefault, cert, getApps, initializeApp } from 'firebase-admin/app';
 import { getAuth } from 'firebase-admin/auth';
 
 import { prisma } from './db.js';
@@ -9,8 +11,24 @@ const firebaseProjectId =
 
 if (!getApps().length) {
   initializeApp({
+    credential: getFirebaseCredential(),
     projectId: firebaseProjectId,
   });
+}
+
+function getFirebaseCredential() {
+  if (process.env.FIREBASE_SERVICE_ACCOUNT_PATH) {
+    const serviceAccount = JSON.parse(
+      readFileSync(process.env.FIREBASE_SERVICE_ACCOUNT_PATH, 'utf8'),
+    );
+    return cert(serviceAccount);
+  }
+
+  if (process.env.FIREBASE_SERVICE_ACCOUNT_JSON) {
+    return cert(JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_JSON));
+  }
+
+  return applicationDefault();
 }
 
 export async function createFirebaseLogin(idToken) {

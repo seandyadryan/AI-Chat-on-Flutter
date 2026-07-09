@@ -6,6 +6,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../firebase_options.dart';
+import '../config/app_config.dart';
 import '../models/session_user.dart';
 import 'api_client.dart';
 
@@ -26,7 +27,9 @@ class AuthService {
         options: DefaultFirebaseOptions.currentPlatform,
       );
     }
-    await _googleSignIn.initialize();
+    await _googleSignIn.initialize(
+      serverClientId: AppConfig.googleServerClientId,
+    );
     _initialized = true;
   }
 

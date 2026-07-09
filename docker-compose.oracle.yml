@@ -23,6 +23,8 @@ services:
       - ./server/.env
     extra_hosts:
       - "host.docker.internal:host-gateway"
+    volumes:
+      - ./secrets/firebase-service-account.json:/run/secrets/firebase-service-account.json:ro
     expose:
       - "8080"
 
@@ -37,6 +39,7 @@ services:
       - "443:443"
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./site:/srv/amarlo:ro
       - caddy_data:/data
       - caddy_config:/config
 

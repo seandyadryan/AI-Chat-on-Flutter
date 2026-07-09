@@ -5,7 +5,7 @@ Flutter Android app with guest chat access, an Oracle-hosted Node.js API, Postgr
 ## Project
 
 - Flutter SDK: `3.41.2` via FVM
-- Android package: `com.deploydulupulangnanti.neuraX`
+- Android package: `com.deploydulupulangnanti.neurax`
 - Backend database: PostgreSQL
 - AI runtime: Ollama on the Oracle VM
 

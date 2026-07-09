@@ -9,10 +9,31 @@
       "client_info": {
         "mobilesdk_app_id": "1:669760327632:android:84b903d4e9e0e25a0433d5",
         "android_client_info": {
-          "package_name": "com.deploydulupulangnanti.neuraX"
+          "package_name": "com.deploydulupulangnanti.neurax"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "669760327632-cn01otmkenluv7qr18s603bh433obeu8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.deploydulupulangnanti.neurax",
+            "certificate_hash": "57144924989ae14c1d0664d0a7eca829f313016a"
+          }
+        },
+        {
+          "client_id": "669760327632-ho0tujra42r3j2mfl5hrlhgtktrlaagn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.deploydulupulangnanti.neurax",
+            "certificate_hash": "5afdf95fed85331a738da084a8a05f1986344d3e"
+          }
+        },
+        {
+          "client_id": "669760327632-ts9shs8eokup5qakogc15i92ber08ekk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyDyap3vqSwYxPhc5xEcp6DRmI336pDMuoY"
@@ -20,7 +41,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "669760327632-ts9shs8eokup5qakogc15i92ber08ekk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

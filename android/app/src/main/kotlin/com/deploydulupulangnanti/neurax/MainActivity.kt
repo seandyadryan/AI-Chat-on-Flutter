@@ -1,4 +1,4 @@
-package com.deploydulupulangnanti.neuraX
+package com.deploydulupulangnanti.neurax
 
 import io.flutter.embedding.android.FlutterActivity
 

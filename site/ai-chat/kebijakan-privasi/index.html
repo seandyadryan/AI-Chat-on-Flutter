@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kebijakan Privasi NeuraX</title>
+  <meta name="description" content="Kebijakan Privasi aplikasi NeuraX AI Chat.">
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #08090b;
+      --panel: #171719;
+      --text: #f1f1f3;
+      --muted: #a7a7ad;
+      --line: #2c2d32;
+      --accent: #eceff3;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at top, rgba(255, 255, 255, .08), transparent 30rem),
+        var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.7;
+    }
+
+    main {
+      width: min(880px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 56px 0 72px;
+    }
+
+    header {
+      padding: 34px;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background: rgba(23, 23, 25, .82);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(34px, 8vw, 64px);
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      margin: 42px 0 12px;
+      font-size: 24px;
+      letter-spacing: 0;
+    }
+
+    p, li {
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    strong {
+      color: var(--text);
+    }
+
+    a {
+      color: var(--accent);
+    }
+
+    .meta {
+      margin: 18px 0 0;
+      color: var(--muted);
+    }
+
+    section {
+      padding-bottom: 4px;
+      border-bottom: 1px solid rgba(255, 255, 255, .08);
+    }
+
+    ul {
+      padding-left: 22px;
+    }
+
+    .contact {
+      margin-top: 28px;
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: var(--panel);
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Kebijakan Privasi NeuraX</h1>
+      <p class="meta">Terakhir diperbarui: 8 Juli 2026</p>
+      <p>
+        Kebijakan Privasi ini menjelaskan bagaimana aplikasi <strong>NeuraX</strong>
+        mengumpulkan, menggunakan, menyimpan, dan melindungi data pengguna saat
+        menggunakan layanan AI Chat.
+      </p>
+    </header>
+
+    <section>
+      <h2>1. Data Yang Kami Kumpulkan</h2>
+      <p>Saat Anda menggunakan NeuraX, kami dapat mengumpulkan data berikut:</p>
+      <ul>
+        <li>Informasi akun Google, seperti nama, alamat email, foto profil, dan ID pengguna.</li>
+        <li>Pesan atau pertanyaan yang Anda kirim ke fitur chat AI.</li>
+        <li>Jawaban AI yang dihasilkan untuk percakapan Anda.</li>
+        <li>Data teknis dasar seperti waktu akses, status request, dan data error untuk membantu perbaikan layanan.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>2. Cara Kami Menggunakan Data</h2>
+      <p>Data digunakan untuk:</p>
+      <ul>
+        <li>Mengizinkan login wajib melalui Google.</li>
+        <li>Menyimpan riwayat percakapan agar dapat ditampilkan kembali di aplikasi.</li>
+        <li>Mengirim pesan pengguna ke server AI untuk menghasilkan jawaban.</li>
+        <li>Menjaga keamanan akun dan mencegah akses tidak sah.</li>
+        <li>Menganalisis gangguan teknis dan meningkatkan kualitas aplikasi.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>3. Login Google Dan Firebase</h2>
+      <p>
+        NeuraX menggunakan Google Sign-In dan Firebase Authentication untuk
+        memverifikasi identitas pengguna. Token autentikasi digunakan untuk
+        memastikan bahwa hanya pengguna yang berhasil login yang dapat memakai
+        fitur chat.
+      </p>
+      <p>
+        Kami tidak meminta password Google Anda. Proses login dilakukan oleh
+        layanan Google/Firebase.
+      </p>
+    </section>
+
+    <section>
+      <h2>4. Penyimpanan Data</h2>
+      <p>
+        Data profil dasar dan percakapan disimpan di database PostgreSQL pada
+        server Oracle Cloud yang kami kelola. Data percakapan digunakan untuk
+        menampilkan riwayat chat dan memberi konteks pada jawaban AI.
+      </p>
+    </section>
+
+    <section>
+      <h2>5. Pemrosesan AI</h2>
+      <p>
+        Pesan yang Anda kirim diproses oleh model AI yang berjalan di server
+        Oracle Cloud. Jangan mengirim data yang sangat sensitif, seperti password,
+        kode OTP, data kartu pembayaran, dokumen rahasia, atau informasi pribadi
+        yang tidak ingin Anda proses oleh sistem AI.
+      </p>
+    </section>
+
+    <section>
+      <h2>6. Berbagi Data</h2>
+      <p>
+        Kami tidak menjual data pribadi pengguna. Data dapat diproses oleh layanan
+        pihak ketiga yang diperlukan untuk menjalankan aplikasi, seperti Google
+        Firebase untuk autentikasi dan Oracle Cloud untuk server aplikasi.
+      </p>
+    </section>
+
+    <section>
+      <h2>7. Keamanan</h2>
+      <p>
+        Kami menggunakan koneksi HTTPS untuk komunikasi aplikasi dan membatasi
+        akses database dari internet. Walaupun begitu, tidak ada sistem yang dapat
+        menjamin keamanan 100%. Pengguna tetap disarankan untuk tidak mengirim
+        informasi sangat sensitif ke chat AI.
+      </p>
+    </section>
+
+    <section>
+      <h2>8. Retensi Dan Penghapusan Data</h2>
+      <p>
+        Riwayat chat dan data akun dapat disimpan selama akun atau layanan masih
+        digunakan. Anda dapat meminta penghapusan data akun dan percakapan melalui
+        kontak yang tersedia di bawah.
+      </p>
+    </section>
+
+    <section>
+      <h2>9. Privasi Anak</h2>
+      <p>
+        NeuraX tidak ditujukan untuk anak di bawah usia yang diwajibkan oleh hukum
+        setempat untuk menggunakan layanan digital tanpa persetujuan orang tua.
+      </p>
+    </section>
+
+    <section>
+      <h2>10. Perubahan Kebijakan</h2>
+      <p>
+        Kebijakan Privasi ini dapat diperbarui dari waktu ke waktu. Versi terbaru
+        akan tersedia di halaman ini.
+      </p>
+    </section>
+
+    <div class="contact">
+      <h2>Kontak</h2>
+      <p>
+        Untuk pertanyaan privasi atau permintaan penghapusan data, hubungi:
+        <br>
+        <a href="mailto:privacy@amarlo.online">privacy@amarlo.online</a>
+      </p>
+    </div>
+  </main>
+</body>
+</html>

@@ -103,10 +103,10 @@ class _SplashScreenState extends State<SplashScreen>
                   CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
                 ),
                 child: Container(
-                  width: 154,
-                  height: 154,
+                  width: 118,
+                  height: 118,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(32),
+                    borderRadius: BorderRadius.circular(26),
                     boxShadow: [
                       BoxShadow(
                         color: const Color(0xFF11D8C3).withValues(alpha: .35),
@@ -121,12 +121,12 @@ class _SplashScreenState extends State<SplashScreen>
                   ),
                 ),
               ),
-              const SizedBox(height: 28),
+              const SizedBox(height: 22),
               const Text(
                 'NeuraX',
                 style: TextStyle(
                   color: Color(0xFFEDEDED),
-                  fontSize: 42,
+                  fontSize: 34,
                   fontWeight: FontWeight.w800,
                 ),
               ),
@@ -135,15 +135,15 @@ class _SplashScreenState extends State<SplashScreen>
                 'Synchronizing neural core',
                 style: TextStyle(
                   color: Colors.white.withValues(alpha: .72),
-                  fontSize: 15,
+                  fontSize: 13,
                 ),
               ),
-              const SizedBox(height: 32),
+              const SizedBox(height: 26),
               if (_isConnecting)
                 const SizedBox(
-                  width: 36,
-                  height: 36,
-                  child: CircularProgressIndicator(strokeWidth: 3),
+                  width: 30,
+                  height: 30,
+                  child: CircularProgressIndicator(strokeWidth: 2.6),
                 )
               else ...[
                 Padding(

@@ -10,4 +10,5 @@ class DefaultFirebaseOptions {
     projectId: 'ai-app-flutter-4763f',
     storageBucket: 'ai-app-flutter-4763f.firebasestorage.app',
   );
+
 }

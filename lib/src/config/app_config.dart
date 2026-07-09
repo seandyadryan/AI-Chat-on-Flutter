@@ -1,6 +1,6 @@
-import 'package:flutter_dotenv/flutter_dotenv.dart';
-
 class AppConfig {
-  static String get apiBaseUrl =>
-      dotenv.maybeGet('API_BASE_URL') ?? 'https://api.amarlo.online';
+  static const apiBaseUrl = 'https://api.amarlo.online';
+
+  static const googleServerClientId =
+      '669760327632-ts9shs8eokup5qakogc15i92ber08ekk.apps.googleusercontent.com';
 }

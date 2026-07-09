@@ -56,40 +56,43 @@ class _LoginScreenState extends State<LoginScreen> {
       backgroundColor: const Color(0xFF08090B),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 32),
+          padding: const EdgeInsets.symmetric(horizontal: 30),
           child: Column(
             children: [
               const Spacer(flex: 2),
-              Image.asset(
-                'assets/branding/app_icon.png',
-                width: 190,
-                height: 190,
-                fit: BoxFit.contain,
+              ClipRRect(
+                borderRadius: BorderRadius.circular(18),
+                child: Image.asset(
+                  'assets/branding/neurax_logo.png',
+                  width: 92,
+                  height: 92,
+                  fit: BoxFit.contain,
+                ),
               ),
-              const SizedBox(height: 28),
+              const SizedBox(height: 20),
               const Text(
                 'NeuraX',
                 style: TextStyle(
                   color: Color(0xFFEDEDED),
-                  fontSize: 62,
+                  fontSize: 44,
                   fontWeight: FontWeight.w800,
                   letterSpacing: 0,
                 ),
               ),
-              const SizedBox(height: 26),
+              const SizedBox(height: 18),
               const Text(
                 'Understand the universe_',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Color(0xFFB8B8B8),
-                  fontSize: 18,
+                  fontSize: 16,
                   fontFamily: 'monospace',
                 ),
               ),
               const Spacer(flex: 2),
               SizedBox(
                 width: double.infinity,
-                height: 66,
+                height: 58,
                 child: FilledButton.icon(
                   onPressed: _isSigningIn ? null : _signIn,
                   style: FilledButton.styleFrom(
@@ -97,7 +100,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     disabledBackgroundColor: const Color(0xFF202124),
                     foregroundColor: Colors.white,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(33),
+                      borderRadius: BorderRadius.circular(29),
                     ),
                   ),
                   icon: _isSigningIn
@@ -109,22 +112,22 @@ class _LoginScreenState extends State<LoginScreen> {
                       : const Text(
                           'G',
                           style: TextStyle(
-                            fontSize: 26,
+                            fontSize: 23,
                             fontWeight: FontWeight.w800,
                           ),
                         ),
                   label: const Text(
                     'Continue with Google',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+                    style: TextStyle(fontSize: 17, fontWeight: FontWeight.w700),
                   ),
                 ),
               ),
-              const SizedBox(height: 18),
+              const SizedBox(height: 14),
               _DisabledLoginButton(
                 icon: Icons.alternate_email_rounded,
                 label: 'Continue with Email',
               ),
-              const SizedBox(height: 14),
+              const SizedBox(height: 12),
               _DisabledLoginButton(
                 icon: Icons.close_rounded,
                 label: 'Continue with X',
@@ -154,7 +157,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ],
                 ),
                 textAlign: TextAlign.center,
-                style: TextStyle(color: Color(0xFF77787D), fontSize: 15),
+                style: TextStyle(color: Color(0xFF77787D), fontSize: 13),
               ),
               const SizedBox(height: 26),
             ],
@@ -175,20 +178,20 @@ class _DisabledLoginButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      height: 64,
+      height: 56,
       child: FilledButton.icon(
         onPressed: null,
         style: FilledButton.styleFrom(
           disabledBackgroundColor: const Color(0xFF15161A),
           disabledForegroundColor: const Color(0xFF55565C),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(32),
+            borderRadius: BorderRadius.circular(28),
           ),
         ),
-        icon: Icon(icon, size: 24),
+        icon: Icon(icon, size: 22),
         label: Text(
           label,
-          style: const TextStyle(fontSize: 19, fontWeight: FontWeight.w700),
+          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
         ),
       ),
     );

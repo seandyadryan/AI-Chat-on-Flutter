@@ -13,6 +13,20 @@ class ChatMessage {
 
   bool get isUser => role == 'user';
 
+  ChatMessage copyWith({
+    String? id,
+    String? role,
+    String? content,
+    DateTime? createdAt,
+  }) {
+    return ChatMessage(
+      id: id ?? this.id,
+      role: role ?? this.role,
+      content: content ?? this.content,
+      createdAt: createdAt ?? this.createdAt,
+    );
+  }
+
   factory ChatMessage.fromJson(Map<String, dynamic> json) {
     return ChatMessage(
       id: json['id'] as String,

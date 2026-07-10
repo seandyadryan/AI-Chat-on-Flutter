@@ -48,7 +48,7 @@ class AuthService {
 
   Future<AuthSession> signInWithGoogle() async {
     await initialize();
-    final account = await _googleSignIn.authenticate();
+    final account = await _authenticateGoogle();
     final googleAuth = account.authentication;
     final credential = GoogleAuthProvider.credential(
       idToken: googleAuth.idToken,
@@ -65,6 +65,43 @@ class AuthService {
     final session = await _apiClient.loginWithFirebase(idToken);
     await _saveSession(session);
     return session;
+  }
+
+  Future<GoogleSignInAccount> _authenticateGoogle() async {
+    try {
+      return await _googleSignIn.authenticate();
+    } on GoogleSignInException catch (error) {
+      if (!_isAccountReauthFailure(error)) rethrow;
+
+      await _clearGoogleSession();
+
+      try {
+        return await _googleSignIn.authenticate();
+      } on GoogleSignInException catch (retryError) {
+        if (_isAccountReauthFailure(retryError)) {
+          throw const ApiException(
+            'Sesi akun Google di perangkat gagal diperbarui. Coba hapus akun Google dari HP lalu login ulang, atau pilih akun Google lain.',
+          );
+        }
+        rethrow;
+      }
+    }
+  }
+
+  bool _isAccountReauthFailure(GoogleSignInException error) {
+    return error.code == GoogleSignInExceptionCode.canceled &&
+        (error.description ?? '').toLowerCase().contains(
+          'account reauth failed',
+        );
+  }
+
+  Future<void> _clearGoogleSession() async {
+    await FirebaseAuth.instance.signOut();
+    try {
+      await _googleSignIn.disconnect();
+    } catch (_) {
+      await _googleSignIn.signOut();
+    }
   }
 
   Future<void> signOut() async {

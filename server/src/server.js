@@ -8,7 +8,9 @@ import { z } from 'zod';
 
 import { createFirebaseLogin, requireAuth } from './auth.js';
 import { prisma } from './db.js';
-import { askOllama } from './ollama.js';
+import { askGemini, validateGeminiConfig } from './gemini.js';
+
+validateGeminiConfig();
 
 const app = express();
 
@@ -73,11 +75,14 @@ app.post('/chat/messages', requireAuth, async (req, res) => {
 
     const history = await prisma.message.findMany({
       where: { conversationId: conversation.id },
-      orderBy: { createdAt: 'asc' },
+      orderBy: { createdAt: 'desc' },
       take: 20,
     });
 
-    const answer = await askOllama(history);
+    const knowledge = await getRelevantKnowledge(parsed.data.message);
+    const answer = knowledge.directAnswer
+      ? knowledge.directAnswer
+      : await askGemini(history.reverse(), knowledge.context);
     const assistant = await prisma.message.create({
       data: {
         role: 'assistant',
@@ -103,6 +108,40 @@ async function getOrCreateConversation(userId) {
   return prisma.conversation.create({
     data: { userId, title: 'NeuraX Chat' },
   });
+}
+
+async function getRelevantKnowledge(message) {
+  const query = message.toLowerCase();
+  const knowledge = await prisma.knowledgeBase.findMany({
+    where: { isActive: true },
+    orderBy: { createdAt: 'asc' },
+    take: 50,
+  });
+
+  const matched = knowledge.filter((item) => {
+    const haystack = [item.question, item.answer, ...item.keywords]
+      .join(' ')
+      .toLowerCase();
+
+    return (
+      item.keywords.some((keyword) =>
+        query.includes(keyword.toLowerCase()),
+      ) || haystack.includes(query)
+    );
+  });
+
+  const selected = matched.length > 0 ? matched : knowledge.slice(0, 10);
+  const directAnswer = matched.length === 1 ? matched[0].answer : null;
+
+  return {
+    directAnswer,
+    context: selected
+      .map(
+        (item, index) =>
+          `${index + 1}. Q: ${item.question}\n   A: ${item.answer}`,
+      )
+      .join('\n'),
+  };
 }
 
 const port = Number(process.env.PORT ?? 8080);
